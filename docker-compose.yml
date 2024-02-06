@@ -30,7 +30,7 @@ services:
 
     
   frontend:
-    image: cyberfenrir/docextractor_frontend:v1.0 
+    image: cyberfenrir/docextractor:v1.0 
     volumes:
       - react_build:/material-kit-react/build
     ports:
