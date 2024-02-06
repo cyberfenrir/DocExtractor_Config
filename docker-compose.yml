@@ -2,8 +2,7 @@ version: '3'
 
 services:
   backend:
-    build:
-      context: ./DocManagement
+    image: kumaraayush/docextractor_backend:v1.0 
     command: >
       sh -c "python manage.py collectstatic --noinput &&
              python manage.py makemigrations && 
@@ -18,22 +17,20 @@ services:
       - mongodb
   
   mongodb:
+    image: cyberfenrir/docextractor_mongo:v1.0 
     environment:
       MONGO_INITDB_DATABASE: DocManagement
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
     hostname: mongodb
-    image: mongo:latest
     ports:
       - "27017:27017"
     volumes: 
       - data-mongodb:/data/db
 
-
     
   frontend:
-    build:
-      context: ./material-kit-react
+    image: cyberfenrir/docextractor_frontend:v1.0 
     volumes:
       - react_build:/material-kit-react/build
     ports:
@@ -42,7 +39,7 @@ services:
 
 
   nginx:
-    image: nginx:latest
+    image: cyberfenrir/docextractor_nginx:v1.0  
     ports:
       - 80:8080
     volumes:
@@ -54,6 +51,7 @@ services:
       - backend
       - frontend
       - mongodb
+
 volumes:
   react_build:
   static_volume:
