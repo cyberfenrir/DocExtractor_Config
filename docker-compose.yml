@@ -38,19 +38,19 @@ services:
     stdin_open: true
 
 
-  nginx:
-    image: cyberfenrir/docextractor_nginx:v1.0  
-    ports:
-      - 80:8080
-    volumes:
-      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
-      - react_build:/var/www/material-kit-react
-      - static_volume:/var/www/staticfiles
-      - media_volume:/var/www/media
-    depends_on:
-      - backend
-      - frontend
-      - mongodb
+  # nginx:
+  #   image: cyberfenrir/docextractor_nginx:v1.0  
+  #   ports:
+  #     - 80:8080
+  #   volumes:
+  #     - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
+  #     - react_build:/var/www/material-kit-react
+  #     - static_volume:/var/www/staticfiles
+  #     - media_volume:/var/www/media
+  #   depends_on:
+  #     - backend
+  #     - frontend
+  #     - mongodb
 
 volumes:
   react_build:
